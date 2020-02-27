@@ -11,6 +11,8 @@ day=1
 noOfDays=20
 tempStake=100
 tempStake2=100
+winCounter=0
+lostCounter=0
 echo "Welcome to gambling simulation"
 #Generate two random values
 for((day=1;day<=20;day++))
@@ -37,14 +39,19 @@ do
 		$winCondition)
 			echo "You won for the day $day"
 			echo "Total win amount:"$halfStake
+			((winCounter++))
 			printf "\n"
 		;;
 		$loseCondition)
 			echo "You lost for the day $day"
 			echo "Total lost amount:"$halfStake
+			((lostCounter++))
 			printf "\n"
 		;;
 	esac
 done
-
+echo "No of days you lost:" $lostCounter
+echo "You lost by:" $((lostCounter*halfStake))
+echo "No of days you won:" $winCounter
+echo "You won by:" $((winCounter*halfStake))
 

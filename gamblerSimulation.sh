@@ -9,14 +9,14 @@ lose=0
 randomCheck=0
 counter=1
 echo "Welcome to gambling simulation"
-#Generate two randim values
+#Generate two random values
 randomCheck=$((RANDOM%2))
 case $randomCheck in
-	0) echo "You lost"
+	0)	echo "You lost"
 		((lose++))
 		stake=$((stake-BET))
 	;;
-	1) echo "You won"
+	1)	echo "You won"
 		((win++))
 		stake=$((stake+BET))
 	;;

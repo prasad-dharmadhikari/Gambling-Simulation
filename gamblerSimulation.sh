@@ -3,29 +3,48 @@
 #Constants
 BET=1
 #Variables
-stake=100
 win=0
 lose=0
 randomCheck=0
 counter=1
-halfStake=$(($stake/2))
-winCondition=$((stake+halfStake))
-loseCondition=$((stake-halfStake))
+day=1
+noOfDays=20
+tempStake=100
+tempStake2=100
 echo "Welcome to gambling simulation"
 #Generate two random values
-while(( $stake!=$winCondition && $stake!=$loseCondition ))
+for((day=1;day<=20;day++))
 do
-	randomCheck=$((RANDOM%2))
-	case $randomCheck in
-		0)	
-			((lose++))
-			stake=$((stake-BET))
+	stake=100
+	halfStake=$(($stake/2))
+	winCondition=$((stake+halfStake))
+	loseCondition=$((stake-halfStake))
+	while(( $stake!=$winCondition && $stake!=$loseCondition ))
+	do
+		randomCheck=$((RANDOM%2))
+		case $randomCheck in
+			0)
+				((lose++))
+				stake=$((stake-BET))
+			;;
+			1)
+				((win++))
+				stake=$((stake+BET))
+			;;
+		esac
+	done
+	case $stake in
+		$winCondition)
+			echo "You won for the day $day"
+			echo "Total win amount:"$halfStake
+			printf "\n"
 		;;
-		1)	
-			((win++))
-			stake=$((stake+BET))
+		$loseCondition)
+			echo "You lost for the day $day"
+			echo "Total lost amount:"$halfStake
+			printf "\n"
 		;;
 	esac
 done
-echo "You resigned for the day"
-echo "Updated stake:$stake"
+echo ${stakeWinOrLoseArray[@]}
+

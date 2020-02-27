@@ -46,5 +46,5 @@ do
 		;;
 	esac
 done
-echo ${stakeWinOrLoseArray[@]}
+
 

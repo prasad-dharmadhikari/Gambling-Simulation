@@ -8,17 +8,24 @@ win=0
 lose=0
 randomCheck=0
 counter=1
+halfStake=$(($stake/2))
+winCondition=$((stake+halfStake))
+loseCondition=$((stake-halfStake))
 echo "Welcome to gambling simulation"
 #Generate two random values
-randomCheck=$((RANDOM%2))
-case $randomCheck in
-	0)	echo "You lost"
-		((lose++))
-		stake=$((stake-BET))
-	;;
-	1)	echo "You won"
-		((win++))
-		stake=$((stake+BET))
-	;;
-esac
-echo "updated stake:$stake"
+while(( $stake!=$winCondition && $stake!=$loseCondition ))
+do
+	randomCheck=$((RANDOM%2))
+	case $randomCheck in
+		0)	
+			((lose++))
+			stake=$((stake-BET))
+		;;
+		1)	
+			((win++))
+			stake=$((stake+BET))
+		;;
+	esac
+done
+echo "You resigned for the day"
+echo "Updated stake:$stake"

@@ -12,7 +12,7 @@ countDay=1
 tempStake=100
 randomCheck=0
 winCounter=0
-#declare -a stakeWinOrLoseArray
+lostCounter=0
 
 #Function to play gambling for a month
 function playGamblingForMonth()
@@ -64,7 +64,7 @@ function playGamblingForMonth()
 function printDailyWinOrLostRecords()
 {
 	echo "Your monthly record is :"
-	# For loop to print 
+	# For loop to print the daily records
 	for value in ${!stakeWinOrLoseArray[@]}
 	do
 		echo "day $value:${stakeWinOrLoseArray[$value]}"
@@ -74,6 +74,7 @@ function printDailyWinOrLostRecords()
 	echo "No of days you won:" $winCounter
 	echo "You won by:" $((winCounter*halfStake))
 }
+# Function to display luckiest and unluckiest day
 function getLuckiestAndUnluckiestDay()
 {
 	maximumMoneyWon=${stakeWinOrLoseArray[1]}
@@ -99,7 +100,7 @@ function getLuckiestAndUnluckiestDay()
 		fi
 	done
 }
-
+#Main driver program
 echo "Welcome to the game of gambling"
 playGamblingForMonth
 printDailyWinOrLostRecords
